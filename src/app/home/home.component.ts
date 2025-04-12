@@ -4,6 +4,8 @@ import {SectionHeadlineComponent} from '../section-headline/section-headline.com
 import {DiscussionMessagesApiService} from '../features/messages/services/discussion-messages-api.service';
 import {DiscussionMessageModel} from '../features/messages/models/discussion-message-model';
 import {MessageComponent} from '../features/messages/components/message/message.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {QuestionModalComponent} from '../question-modal/question-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ export class HomeComponent {
   messages: DiscussionMessageModel[] | undefined;
 
   private messagesService = inject(DiscussionMessagesApiService);
+  private ngModal = inject(NgbModal);
 
   constructor() {
     this.messagesService.getDiscussionMessages()
@@ -30,5 +33,15 @@ export class HomeComponent {
           alert(error.message)
         }
       })
+  }
+
+  onNewQuestionClick() {
+    const modalRef = this.ngModal.open(QuestionModalComponent);
+
+    modalRef.result.then((result) => {
+
+    }, reason => {
+
+    })
   }
 }
