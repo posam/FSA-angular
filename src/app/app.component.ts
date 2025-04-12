@@ -1,5 +1,7 @@
-import {Component, computed, signal} from '@angular/core';
+import {Component, computed, effect, model, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+
+const LOCALSTORAGE_NAME_KEY = 'name';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,18 @@ import {FormsModule} from '@angular/forms';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  name = 'Angular';
+  name = model(localStorage.getItem(LOCALSTORAGE_NAME_KEY) || 'Angular');
 
   counterValue = signal(0);
   counterMultiplied = computed(() => {
     return this.counterValue() * 2;
   })
+
+  constructor() {
+    effect(() => {
+      localStorage.setItem(LOCALSTORAGE_NAME_KEY, this.name());
+    })
+  }
 
   increment() {
     this.counterValue.update(value => {
@@ -25,4 +33,6 @@ export class AppComponent {
   decrement() {
     this.counterValue.set(this.counterValue() - 1)
   }
+
+
 }
