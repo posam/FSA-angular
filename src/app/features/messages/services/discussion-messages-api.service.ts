@@ -26,6 +26,16 @@ export class DiscussionMessagesApiService {
     // ]);
   }
 
+  getLatestQuestion() {
+    return this.http.get<DiscussionMessageModel[]>(this.beUrl)
+      .pipe(map(value => {
+        return value
+          .filter(value1 => value1.typ === DiscussionMessageTypeEnum.QUESTION)
+          .slice(0, 3)
+      }));
+  }
+
+
   createQuestion(question: DiscussionMessageModel) {
     const questionBody = {...question} as DiscussionMessageModel;
 

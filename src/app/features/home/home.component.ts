@@ -31,7 +31,7 @@ export class HomeComponent {
   constructor() {
     this.messages$ = this.refreshSubject
       .pipe(switchMap(() => {
-        return this.messagesService.getDiscussionMessages();
+        return this.messagesService.getLatestQuestion();
       }))
   }
 

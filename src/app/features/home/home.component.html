@@ -14,20 +14,17 @@
       </div>
     </header>
 
-    <div class="mb-8 text-end">
+    @for (message of (messages$ | async); track message.id){
+      <app-message [message]="message"></app-message>
+    }
+
+    <div class="mt-8 text-end">
       <button type="button" class="text-uppercase fw-bold text-decoration-none e-icon-link e-icon-link--action"
               (click)="onNewQuestionClick()">
         <i class="zmdi zmdi-plus"></i>
         New question
       </button>
     </div>
-
-
-
-
-    @for (message of (messages$ | async); track message.id){
-      <app-message [message]="message"></app-message>
-    }
 
   </section>
 </div>
