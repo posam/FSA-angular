@@ -11,6 +11,15 @@ export class DiscussionMessagesApiService {
 
   getDiscussionMessages() {
     return this.http.get<DiscussionMessageModel[]>('/discussion-messages');
+    // return of([
+    //   {
+    //     id: 1,
+    //     name: 'Angular',
+    //     message: ' Angular course',
+    //     created: new Date(),
+    //     typ: DiscussionMessageTypeEnum.QUESTION
+    //   } as DiscussionMessageModel,
+    // ]);
   }
 
 }

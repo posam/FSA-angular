@@ -3,12 +3,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SectionHeadlineComponent} from '../section-headline/section-headline.component';
 import {DiscussionMessagesApiService} from '../features/messages/services/discussion-messages-api.service';
 import {DiscussionMessageModel} from '../features/messages/models/discussion-message-model';
+import {MessageComponent} from '../features/messages/components/message/message.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     ReactiveFormsModule,
-    SectionHeadlineComponent
+    SectionHeadlineComponent,
+    MessageComponent
   ],
   templateUrl: './home.component.html'
 })
