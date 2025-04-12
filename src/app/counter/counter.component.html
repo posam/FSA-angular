@@ -1,12 +1,12 @@
-<div class="container my-8">
-  <section  >
+<app-section-headline [header]="'Counter'" (categories)="onCatClick($event)"></app-section-headline>
 
-    <h1>Hello {{name()}}</h1><br>
-    <input [(ngModel)]="name"><br>
-    <hr>
-    <span>Count: {{counterValue()}}</span><br>
-    <span>Multiplied: {{counterMultiplied()}}</span><br>
-    <button class="btn btn-outline-primary" (click)="increment()">+</button>
-    <button class="btn btn-outline-primary" (click)="decrement()">-</button>
-  </section>
-</div>
+
+<app-section-container>
+  <h1>Hello {{name()}}</h1><br>
+  <input [(ngModel)]="name"><br>
+  <hr>
+  <span>Count: {{counterValue()}}</span><br>
+  <span>Multiplied: {{counterMultiplied()}}</span><br>
+  <button class="btn btn-outline-primary" (click)="increment()">+</button>
+  <button class="btn btn-outline-primary" (click)="decrement()">-</button>
+</app-section-container>
