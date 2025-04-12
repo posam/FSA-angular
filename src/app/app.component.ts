@@ -1,13 +1,17 @@
 import {Component, computed, effect, inject, model} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CounterService} from './counter.service';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 const LOCALSTORAGE_NAME_KEY = 'name';
 
 @Component({
   selector: 'app-root',
   imports: [
-    FormsModule
+    FormsModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './app.component.html'
 })

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Logo/Mono-colored</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#30537A" offset="0%"></stop>
+            <stop stop-color="#1D3557" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-Homepage" transform="translate(-24, -24)">
+            <g id="Logo/Mono-colored" transform="translate(24, 24)">
+                <path d="M8.17021277,0 L39.8297872,0 C44.3420711,0 48,3.65792885 48,8.17021277 L48,39.8297872 C48,44.3420711 44.3420711,48 39.8297872,48 L8.17021277,48 C3.65792885,48 0,44.3420711 0,39.8297872 L0,8.17021277 C0,3.65792885 3.65792885,0 8.17021277,0 Z" id="Rectangle" fill="url(#linearGradient-1)"></path>
+                <text id="CQ" font-family="IBMPlexSerif-Bold, IBM Plex Serif" font-size="24" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="6" y="33">CQ</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
