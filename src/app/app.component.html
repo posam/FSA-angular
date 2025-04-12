@@ -1,1 +1,7 @@
-<h1>Hello {{name}}</h1>
+<h1>Hello {{name}}</h1><br>
+<input [(ngModel)]="name"><br>
+<hr>
+<span>Count: {{counterValue()}}</span><br>
+<span>Multiplied: {{counterMultiplied()}}</span><br>
+<button (click)="increment()">+</button>
+<button (click)="decrement()">-</button>
