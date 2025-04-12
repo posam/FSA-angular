@@ -25,7 +25,7 @@
 
 
 
-    @for (message of messages; track message.id){
+    @for (message of (messages$ | async); track message.id){
       <app-message [message]="message"></app-message>
     }
 
