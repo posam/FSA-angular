@@ -27,7 +27,7 @@
     @if (user(); as user) {
       <div ngbDropdown class="mt-lg-4" [title]="user.name">
         <button class="e-user" type="button" ngbDropdownToggle>
-          {{ user.name}}
+          {{ user.name | initials}}
         </button>
 
         <div ngbDropdownMenu>

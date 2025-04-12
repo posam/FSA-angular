@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {UserService} from './user.service';
 import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle} from '@ng-bootstrap/ng-bootstrap';
+import {InitialsPipe} from './initials.pipe';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle} from '@ng-bootstrap/ng-
     RouterLinkActive,
     NgbDropdown,
     NgbDropdownToggle,
-    NgbDropdownMenu
+    NgbDropdownMenu,
+    InitialsPipe
   ],
   templateUrl: './app.component.html'
 })
@@ -22,10 +24,10 @@ export class AppComponent {
   user = this.userService.getUserSignal();
 
   logout() {
-
+    this.userService.logout();
   }
 
   login() {
-
+    this.userService.login();
   }
 }
