@@ -1,9 +1,9 @@
 import {Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './features/home/home.component';
 import {CounterComponent} from './counter/counter.component';
-import {NotFoundComponent} from './not-found/not-found.component';
-import {canActiveHome} from './user.service';
-import {MessageDetailComponent} from './message-detail/message-detail.component';
+import {NotFoundComponent} from './features/not-found/not-found.component';
+import {canActiveHome} from './core/services/user.service';
+import {MessageDetailComponent} from './features/messages/components/message-detail/message-detail.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [canActiveHome]},

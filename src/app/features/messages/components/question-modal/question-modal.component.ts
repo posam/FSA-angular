@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {DiscussionMessageModel} from '../features/messages/models/discussion-message-model';
+import {DiscussionMessageModel} from '../../models/discussion-message-model';
 import {FormsModule, NgForm} from '@angular/forms';
-import {DiscussionMessagesApiService} from '../features/messages/services/discussion-messages-api.service';
+import {DiscussionMessagesApiService} from '../../services/discussion-messages-api.service';
 
 @Component({
   selector: 'app-question-modal',

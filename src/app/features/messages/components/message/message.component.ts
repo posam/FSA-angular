@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
 import {DiscussionMessageModel} from '../../models/discussion-message-model';
 import {DatePipe, UpperCasePipe} from '@angular/common';
-import {UserModelPipe} from '../../../../user-model.pipe';
+import {UserModelPipe} from '../../../../shared/pipes/user-model.pipe';
 import {RouterLink} from '@angular/router';
 
 @Component({

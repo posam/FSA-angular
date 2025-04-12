@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {UserService} from './user.service';
+import {UserService} from './core/services/user.service';
 import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle} from '@ng-bootstrap/ng-bootstrap';
-import {InitialsPipe} from './initials.pipe';
+import {InitialsPipe} from './shared/pipes/initials.pipe';
 
 @Component({
   selector: 'app-root',

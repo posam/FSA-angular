@@ -1,8 +1,8 @@
 import {Component, computed, effect, inject, model} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CounterService} from './counter.service';
-import {SectionContainerComponent} from '../section-container/section-container.component';
-import {SectionHeadlineComponent} from '../section-headline/section-headline.component';
+import {SectionContainerComponent} from '../shared/components/section-container/section-container.component';
+import {SectionHeadlineComponent} from '../shared/components/section-headline/section-headline.component';
 
 const LOCALSTORAGE_NAME_KEY = 'name';
 

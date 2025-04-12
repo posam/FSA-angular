@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, switchMap} from 'rxjs';
-import {DiscussionMessagesApiService} from '../features/messages/services/discussion-messages-api.service';
-import {DiscussionMessageModel} from '../features/messages/models/discussion-message-model';
+import {DiscussionMessagesApiService} from '../../services/discussion-messages-api.service';
+import {DiscussionMessageModel} from '../../models/discussion-message-model';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import {MessageComponent} from '../features/messages/components/message/message.component';
+import {MessageComponent} from '../message/message.component';
 
 @Component({
   selector: 'app-message-detail',
