@@ -3,6 +3,7 @@ import {DiscussionMessageModel} from '../models/discussion-message-model';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {DiscussionMessageTypeEnum} from '../models/discussion-message-type-enum';
+import {map, switchMap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,36 @@ export class DiscussionMessagesApiService {
 
     return this.http.post(this.beUrl, questionBody);
   }
+
+
+  getAllQuestion() {
+    return this.getDiscussionMessages()
+      .pipe(map(allMessages => allMessages
+        .filter(message => message.typ === DiscussionMessageTypeEnum.QUESTION)));
+  }
+
+
+  getAllAnswers() {
+    return this.getDiscussionMessages()
+      .pipe(map(allMessages => allMessages
+        .filter(message => message.typ === DiscussionMessageTypeEnum.ANSWER)));
+  }
+
+  getMessage(id: number) {
+    return this.getAllQuestion()
+      .pipe(map(questions => {
+        return questions.find(question => question.id === id)
+      }));
+  }
+
+
+  getAnswers(messageId: number) {
+    return this.getMessage(messageId)
+      .pipe(switchMap(question => {
+        return this.getAllAnswers()
+          .pipe(map(allAnswers => allAnswers.filter(answer => answer.name === question?.name)));
+      }))
+  }
+
 
 }

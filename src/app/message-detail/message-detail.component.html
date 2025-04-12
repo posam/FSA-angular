@@ -1,0 +1,40 @@
+<div class="b-section-headline">
+  <div class="container" *ngIf="question$ | async as question">
+    <header class="mb-6">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="fw-bold m-0">{{ question.name }}</h2>
+        </div>
+        <div class="col-auto">
+          <a href="#" title="#" class="text-uppercase fw-bold text-decoration-none e-icon-link">
+            <i class="zmdi zmdi-settings"></i>
+            Categories
+          </a>
+        </div>
+      </div>
+    </header>
+
+
+    <div class="row align-items-center">
+      <div class="col-12 col-md-auto">
+        <img src="/images/illustration-course-detail.svg" alt="#" width="295" height="222"
+             class="mx-auto d-block img-fluid mb-6">
+      </div>
+      <div class="col-12 col-md">
+        <div class="card p-6">
+          <p>{{ question.message }}</p>
+
+
+          <!--          <div class="mt-4">-->
+          <!--            <button type="button" class="btn btn-blue" (click)="onAnswerClick(question)">Answer</button>-->
+          <!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-message *ngFor="let item of answers$|async"
+             [message]="item"
+></app-message>
