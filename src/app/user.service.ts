@@ -1,7 +1,8 @@
-import {Injectable, signal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {UserModel} from './core/models/user-model';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {authCodeFlowConfig} from './core/config/authCodeFlowConfig.config';
+import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,12 @@ export class UserService {
   }
 
   tryLogin() {
-    this.oauthService.loadDiscoveryDocumentAndTryLogin()
+    return this.oauthService.loadDiscoveryDocumentAndTryLogin()
       .then(() => {
-        this.user.set(this.oauthService.getIdentityClaims() as UserModel);
+        let userModel = this.oauthService.getIdentityClaims() as UserModel;
+        this.user.set(userModel);
+
+        return userModel;
       })
   }
 
@@ -39,7 +43,29 @@ export class UserService {
     this.user.set(undefined);
   }
 
-
-
+  isUserLoggedIn() {
+    return this.tryLogin()
+      .then((userModel : UserModel | undefined) => {
+        return !!userModel;
+      })
+  }
 
 }
+
+
+export const canActiveHome: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const router = inject(Router);
+  const userService = inject(UserService);
+
+
+  return userService.isUserLoggedIn()
+    .then(value => {
+      if (value) {
+        return true;
+      } else {
+        // return router.createUrlTree(['/counter']);
+        userService.login();
+        return false;
+      }
+    })
+};
