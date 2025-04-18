@@ -76,4 +76,11 @@ export class DiscussionMessagesApiService {
   }
 
 
+  answerQuestion(question: DiscussionMessageModel, answer: DiscussionMessageModel) {
+    const answerBody = {...answer};
+    answerBody.created = new Date();
+    answerBody.typ = DiscussionMessageTypeEnum.ANSWER;
+
+    return this.http.post('/discussion-messages/' + question.id + '/reply', answerBody);
+  }
 }

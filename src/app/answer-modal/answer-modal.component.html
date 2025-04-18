@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">New answer</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="submit()" #ngForm="ngForm">
+  <div class="modal-body">
+
+    <div class="mb-3">
+      <label for="nameInput" class="form-label">Name</label>
+      <input type="text" class="form-control" id="nameInput" name="name"
+             formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label for="messageInput" class="form-label">Message</label>
+      <textarea class="form-control" id="messageInput" name="message"
+                [class.is-invalid]="ngForm.submitted && form.controls['message'].invalid"
+                formControlName="message"></textarea>
+      <div class="invalid-feedback">Message is required.</div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>

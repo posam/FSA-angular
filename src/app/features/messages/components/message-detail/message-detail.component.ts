@@ -1,10 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, Observable, switchMap} from 'rxjs';
 import {DiscussionMessagesApiService} from '../../services/discussion-messages-api.service';
 import {DiscussionMessageModel} from '../../models/discussion-message-model';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, NgForOf} from '@angular/common';
 import {MessageComponent} from '../message/message.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AnswerModalComponent} from '../../../../answer-modal/answer-modal.component';
+import {SectionContainerComponent} from '../../../../shared/components/section-container/section-container.component';
 
 @Component({
   selector: 'app-message-detail',
@@ -12,7 +15,7 @@ import {MessageComponent} from '../message/message.component';
     AsyncPipe,
     MessageComponent,
     NgForOf,
-    NgIf
+    SectionContainerComponent
   ],
   templateUrl: './message-detail.component.html'
 })
@@ -21,21 +24,37 @@ export class MessageDetailComponent {
   question$: Observable<DiscussionMessageModel | undefined>;
   answers$: Observable<DiscussionMessageModel[]>;
 
-  constructor(private route: ActivatedRoute, private messagesApiService: DiscussionMessagesApiService) {
+  private refreshSubject = new BehaviorSubject(undefined);
+  private ngbModal = inject(NgbModal);
 
-    this.question$ = route.paramMap
-      .pipe(switchMap(map => {
-        const id = Number(map.get('id'));
-        return messagesApiService.getMessage(id);
-      }))
+  constructor(route: ActivatedRoute, messagesApiService: DiscussionMessagesApiService) {
 
+    this.question$ = this.refreshSubject
+      .pipe(switchMap(() => {
+        return route.paramMap
+          .pipe(switchMap(map => {
+            const id = Number(map.get('id'));
+            return messagesApiService.getMessage(id);
+          }))
+      }));
 
-    this.answers$ = route.paramMap
-      .pipe(switchMap(value => {
-        const id = Number(value.get('id'));
-        return messagesApiService.getAnswers(id);
-      }))
+    this.answers$ = this.refreshSubject
+      .pipe(switchMap(() => {
+        return route.paramMap
+          .pipe(switchMap(value => {
+            const id = Number(value.get('id'));
+            return messagesApiService.getAnswers(id);
+          }))
+      }));
+  }
 
+  onAnswerClick(question: DiscussionMessageModel) {
+    const ngbModalRef = this.ngbModal.open(AnswerModalComponent);
 
+    ngbModalRef.componentInstance.question = question;
+
+    ngbModalRef.result.then(() => {
+      this.refreshSubject.next(undefined);
+    })
   }
 }
