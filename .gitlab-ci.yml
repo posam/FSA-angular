@@ -1,8 +1,8 @@
 stages:
   - build
 variables:
-  CONTAINER_REGISTRY: "https://fsa2025pieterrregistry.azurecr.io"
-  DOCKER_REPOSITORY: "fsa2025pieterrregistry.azurecr.io"
+  CONTAINER_REGISTRY: "https://fsapieterrregistry.azurecr.io"
+  DOCKER_REPOSITORY: "fsapieterrregistry.azurecr.io"
   IMAGE_NAME: "fsa-frontend"
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://127.0.0.1:2375
