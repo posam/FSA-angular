@@ -1,12 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, computed, effect, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('coursequest-ui');
+  name = signal('Angular');
+  counterValue = signal(0);
+  multipleCounter = computed(() => {
+    return this.counterValue() * 2;
+  });
+
+  constructor() {
+    effect(() => {
+      console.log(this.multipleCounter());
+    });
+  }
+
+  protected increment() {
+    // this.counterValue.set(this.counterValue() + 1);
+    this.counterValue.update((value) => value + 1);
+  }
 }
