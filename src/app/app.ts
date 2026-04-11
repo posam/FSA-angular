@@ -8,22 +8,18 @@ import { CounterService } from './counter.service';
   templateUrl: './app.html',
 })
 export class App {
+  // lubos.pittner@posam.sk
+  // zadanie 1: counterValue mat v counterService a odkladat ju do localStorage
+
+  private counterService = inject(CounterService);
+
   name = signal('Angular');
-  counterValue = signal(0);
+  counterValue = this.counterService.counterValue;
   multipleCounter = computed(() => {
     return this.counterValue() * 2;
   });
 
-  private counterService = inject(CounterService);
-
-  constructor() {
-    effect(() => {
-      console.log(this.multipleCounter());
-    });
-  }
-
   protected increment() {
-    // this.counterValue.set(this.counterValue() + 1);
-    this.counterValue.update((value) => value + 1);
+    this.counterService.increment();
   }
 }
