@@ -26,6 +26,10 @@
     </div>
   </header>
 
+  @for (msg of messages$ | async; track msg.id){
+    {{msg | json}}<hr>
+  }
+
   <div class="card mb-3">
     <div class="card-body">
       <div class="row align-items-center">

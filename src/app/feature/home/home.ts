@@ -1,18 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { SectionContainer } from '../../shared/component/section-container/section-container';
 import { DiscussionMessagesApi } from '../messages/discussion-messages-api';
+import { Observable } from 'rxjs';
+import { DiscussionMessageModel } from '../messages/model/discussion-message-model';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionContainer],
+  imports: [SectionContainer, AsyncPipe, JsonPipe],
   templateUrl: './home.html',
 })
 export class Home {
+  messages$: Observable<DiscussionMessageModel[]>;
+
   private api = inject(DiscussionMessagesApi);
 
   constructor() {
-    this.api.getDiscussionMessages().subscribe((value) => {
-      console.log(value);
-    });
+    this.messages$ = this.api.getDiscussionMessages();
   }
 }
