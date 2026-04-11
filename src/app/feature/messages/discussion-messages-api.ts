@@ -32,6 +32,11 @@ export class DiscussionMessagesApi {
     );
   }
 
+  answerQuestion(question: DiscussionMessageModel, answer: DiscussionMessageModel) {
+    answer.typ = DiscussionMessageTypeEnum.ANSWER;
+    return this.http.post('/discussion-messages/' + question.id + '/reply', answer);
+  }
+
   getLatestQuestions() {
     return this.getDiscussionQuestions().pipe(
       map((messages: DiscussionMessageModel[]) => messages.slice(0, 3)),
