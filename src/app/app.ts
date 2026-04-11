@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { UserService } from './user.service';
 import { NgbDropdown, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
+import { InitialsPipe } from './initials-pipe';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { NgbDropdown, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/n
     NgbDropdown,
     NgbDropdownToggle,
     NgbDropdownMenu,
+    InitialsPipe,
   ],
   templateUrl: './app.html',
 })
@@ -28,6 +30,6 @@ export class App {
   }
 
   protected login() {
-    this.userService.login()
+    this.userService.login();
   }
 }
