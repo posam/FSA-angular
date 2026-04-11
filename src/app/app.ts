@@ -1,26 +1,14 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CounterService } from './counter.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, RouterLink, RouterOutlet],
+  imports: [FormsModule, RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './app.html',
 })
 export class App {
   // lubos.pittner@posam.sk
   // zadanie 1: counterValue mat v counterService a odkladat ju do localStorage
-
-  private counterService = inject(CounterService);
-
-  name = signal('Angular');
-  counterValue = this.counterService.counterValue;
-  multipleCounter = computed(() => {
-    return this.counterValue() * 2;
-  });
-
-  protected increment() {
-    this.counterService.increment();
-  }
+  //zadanie 2: extrakt counteru do samostatnej komponenty, ktora bude dostupna z menu
 }
