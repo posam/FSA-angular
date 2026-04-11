@@ -30,7 +30,7 @@ export class UserService {
     this.user.set(undefined);
   }
 
-  private tryLogin() {
+  tryLogin() {
     return this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
       this.user.set(this.oauthService.getIdentityClaims() as UserModel);
       return this.user();
