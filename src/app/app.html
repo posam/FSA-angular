@@ -1,22 +1,32 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/"><i class="fa-brands fa-discourse text-warning"></i> CourseQuest</a>
-    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg bg-white">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button"
+            aria-controls="navbarToggler" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation"
+            (click)="collapsed = !collapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-uppercase">
+    <a class="navbar-brand" routerLink="/">
+      <img src="/images/logo.svg" alt="Logo" width="48" height="48">
+    </a>
+
+
+    <div class="navbar-collapse" [class.collapse]="collapsed"
+         id="navbarToggler">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
+          <a class="nav-link"
+             routerLink="home" routerLinkActive="active"
+          ><i class="zmdi zmdi-home"></i> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="counter" routerLinkActive="active">Counter</a>
+          <a class="nav-link"
+             routerLink="counter" routerLinkActive="active"
+          ><i class="zmdi zmdi-n-1-square"></i> Counter</a>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>

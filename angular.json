@@ -36,8 +36,17 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
-
+            "styles": ["src/styles/scss/app.scss", "src/styles/styles.scss"],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": [
+                  "if-function",
+                  "color-functions",
+                  "global-builtin",
+                  "import"
+                ]
+              }
+            },
             "polyfills": ["@angular/localize/init"]
           },
           "configurations": {

@@ -11,4 +11,5 @@ export class App {
   // lubos.pittner@posam.sk
   // zadanie 1: counterValue mat v counterService a odkladat ju do localStorage
   //zadanie 2: extrakt counteru do samostatnej komponenty, ktora bude dostupna z menu
+  protected collapsed = true;
 }
