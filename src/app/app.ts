@@ -1,5 +1,6 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CounterService } from './counter.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ export class App {
   multipleCounter = computed(() => {
     return this.counterValue() * 2;
   });
+
+  private counterService = inject(CounterService);
 
   constructor() {
     effect(() => {
