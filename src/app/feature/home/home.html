@@ -26,7 +26,7 @@
     </div>
   </header>
 
-  @for (msg of messages$ | async; track msg.id){
+  @for (msg of messages(); track msg.id){
     <app-message [message]="msg"></app-message>
   }
 

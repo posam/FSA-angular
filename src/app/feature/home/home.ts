@@ -1,22 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { SectionContainer } from '../../shared/component/section-container/section-container';
 import { DiscussionMessagesApi } from '../messages/discussion-messages-api';
-import { Observable } from 'rxjs';
 import { DiscussionMessageModel } from '../messages/model/discussion-message-model';
-import { AsyncPipe, CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
 import { Message } from '../../message/message';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionContainer, AsyncPipe, JsonPipe, DatePipe, CurrencyPipe, Message],
+  imports: [SectionContainer, Message],
   templateUrl: './home.html',
 })
 export class Home {
-  messages$: Observable<DiscussionMessageModel[]>;
+  messages: Signal<DiscussionMessageModel[] | undefined>;
 
   private api = inject(DiscussionMessagesApi);
 
   constructor() {
-    this.messages$ = this.api.getDiscussionMessages();
+    this.messages = toSignal(this.api.getLatestMessages());
   }
 }

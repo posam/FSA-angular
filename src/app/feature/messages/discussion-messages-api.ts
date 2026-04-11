@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DiscussionMessageModel } from './model/discussion-message-model';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,12 @@ export class DiscussionMessagesApi {
 
   getDiscussionMessages() {
     return this.http.get<DiscussionMessageModel[]>(this._url);
+  }
+
+  getLatestMessages() {
+    return this.getDiscussionMessages().pipe(
+      map((messages: DiscussionMessageModel[]) => messages.slice(0, 3)),
+    );
   }
 
   getDiscussionMessage(id: number) {
@@ -29,5 +36,4 @@ export class DiscussionMessagesApi {
   deleteDiscussionMessage(id: number) {
     return this.http.delete<void>(`${this._url}/${id}`);
   }
-
 }
