@@ -1,7 +1,7 @@
 <h1>Hello {{name() ? name() : 'World' }}</h1>
 <input type="text" [(ngModel)]="name">
-<button (click)="name.set('')">Clear</button>
+<button class="btn btn-primary" (click)="name.set('')">Clear</button>
 <hr>
 <div>Count: {{counterValue()}}</div>
 <div>Count x2: {{multipleCounter()}}</div>
-<button (click)="increment()">Increment</button>
+<button class="btn btn-primary" (click)="increment()">Increment</button>
