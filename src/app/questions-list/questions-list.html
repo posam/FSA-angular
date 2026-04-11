@@ -3,10 +3,14 @@
     <header class="mb-6">
       <div class="row align-items-center">
         <div class="col">
-          <h2 class="fw-bold m-0">Home</h2>
+          <h2 class="fw-bold m-0">Questions</h2>
         </div>
       </div>
     </header>
+
+    <div class="card">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
   </div>
 </div>
 
@@ -14,10 +18,7 @@
   <header class="mb-4">
     <div class="row align-items-center">
       <div class="col">
-        <h2 class="fw-bold m-0">Latest questions</h2>
-      </div>
-      <div class="col-auto">
-        <a href="#" title="#" class="text-uppercase fw-bold text-decoration-none" routerLink="/questions">See all</a>
+        <h2 class="fw-bold m-0">All questions</h2>
       </div>
     </div>
   </header>
@@ -25,5 +26,14 @@
   @for (msg of messages(); track msg.id){
     <app-message [message]="msg"></app-message>
   }
+
+  <div class="mt-8 text-end">
+    <button type="button" class="text-uppercase fw-bold text-decoration-none e-icon-link e-icon-link--action"
+            (click)="onNewQuestionClick()">
+      <i class="zmdi zmdi-plus"></i>
+      New question
+    </button>
+  </div>
+
 
 </app-section-container>
