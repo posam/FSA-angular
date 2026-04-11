@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DiscussionMessageModel } from './model/discussion-message-model';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { DiscussionMessageTypeEnum } from './model/discussion-message-type-enum';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { DiscussionMessageTypeEnum } from './model/discussion-message-type-enum'
 export class DiscussionMessagesApi {
   private http = inject(HttpClient);
 
-  private readonly _url = '/discussion-messages';
+  private readonly _url = environment.beUrl + '/discussion-messages';
 
   getDiscussionMessages() {
     return this.http.get<DiscussionMessageModel[]>(this._url);
@@ -23,6 +24,13 @@ export class DiscussionMessagesApi {
       ),
     );
   }
+  getAnswers() {
+    return this.getDiscussionMessages().pipe(
+      map((messages: DiscussionMessageModel[]) =>
+        messages.filter((m) => m.typ === DiscussionMessageTypeEnum.ANSWER),
+      ),
+    );
+  }
 
   getLatestQuestions() {
     return this.getDiscussionQuestions().pipe(
@@ -30,13 +38,29 @@ export class DiscussionMessagesApi {
     );
   }
 
-  getDiscussionMessage(id: number) {
-    return this.http.get<DiscussionMessageModel>(`${this._url}/${id}`);
+  getQuestion(id: number) {
+    return this.getDiscussionQuestions().pipe(
+      map((questions) => {
+        return questions.find((question) => question.id === id);
+      }),
+    );
   }
 
   createQuestion(question: DiscussionMessageModel) {
     question.typ = DiscussionMessageTypeEnum.QUESTION;
     return this.http.post(this._url, question);
+  }
+
+  getQuestionAnswers(id: number) {
+    return this.getQuestion(id).pipe(
+      switchMap((question) => {
+        return this.getAnswers().pipe(
+          map((allAnswers) =>
+            allAnswers.filter((answer) => answer!.name!.indexOf(question!.name!) > -1),
+          ),
+        );
+      }),
+    );
   }
 
   editDiscussionMessage(discussionMessage: DiscussionMessageModel) {

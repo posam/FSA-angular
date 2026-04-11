@@ -1,0 +1,40 @@
+<app-section-container>
+
+  <div class="b-section-headline">
+    @if (question(); as question){
+      <div class="container">
+        <header class="mb-6">
+          <div class="row align-items-center">
+            <div class="col">
+              <h2 class="fw-bold m-0">{{ question.name }}</h2>
+            </div>
+          </div>
+        </header>
+
+
+        <div class="row align-items-center">
+          <div class="col-12 col-md-auto">
+            <img src="/images/illustration-course-detail.svg" alt="#" width="295" height="222"
+                 class="mx-auto d-block img-fluid mb-6">
+          </div>
+          <div class="col-12 col-md">
+            <div class="card p-6">
+              <p>{{ question.message }}</p>
+              <div class="mt-4">
+                <button type="button" class="btn btn-blue" (click)="onAnswerClick(question)">Answer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+
+    @for (item of answers(); track item.id) {
+      <app-message [message]="item"></app-message>
+    }
+
+
+
+</app-section-container>

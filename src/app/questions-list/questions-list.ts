@@ -7,10 +7,11 @@ import { SectionContainer } from '../shared/component/section-container/section-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionModal } from '../question-modal/question-modal';
 import { BehaviorSubject, switchMap } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-questions-list',
-  imports: [Message, SectionContainer],
+  imports: [Message, SectionContainer, RouterLink],
   templateUrl: './questions-list.html',
 })
 export class QuestionsList {
