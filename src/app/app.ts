@@ -1,11 +1,11 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CounterService } from './counter.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, RouterOutlet],
   templateUrl: './app.html',
 })
 export class App {
