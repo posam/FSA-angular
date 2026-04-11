@@ -3,11 +3,11 @@ import { SectionContainer } from '../../shared/component/section-container/secti
 import { DiscussionMessagesApi } from '../messages/discussion-messages-api';
 import { Observable } from 'rxjs';
 import { DiscussionMessageModel } from '../messages/model/discussion-message-model';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionContainer, AsyncPipe, JsonPipe],
+  imports: [SectionContainer, AsyncPipe, JsonPipe, DatePipe, CurrencyPipe],
   templateUrl: './home.html',
 })
 export class Home {
