@@ -4,10 +4,11 @@ import { DiscussionMessagesApi } from '../messages/discussion-messages-api';
 import { Observable } from 'rxjs';
 import { DiscussionMessageModel } from '../messages/model/discussion-message-model';
 import { AsyncPipe, CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
+import { Message } from '../../message/message';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionContainer, AsyncPipe, JsonPipe, DatePipe, CurrencyPipe],
+  imports: [SectionContainer, AsyncPipe, JsonPipe, DatePipe, CurrencyPipe, Message],
   templateUrl: './home.html',
 })
 export class Home {

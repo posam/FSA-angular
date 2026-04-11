@@ -27,20 +27,7 @@
   </header>
 
   @for (msg of messages$ | async; track msg.id){
-    <div class="card mb-3">
-      <div class="card-body">
-        <div class="row align-items-center">
-          <div class="col">
-            <span class="badge rounded-pill text-bg-violet">{{msg.name}}</span>
-          </div>
-          <div class="col-auto">
-            <small class="text-body-secondary">{{ msg.created | date: 'fullDate'}}</small>
-          </div>
-        </div>
-        <p class="card-text fw-bold mb-4 mt-3">{{msg.message}}</p>
-        <p class="card-text"><small class="text-body-secondary">Question by: {{msg.createdBy?.name}}</small></p>
-      </div>
-    </div>
+    <app-message [message]="msg"></app-message>
   }
 
 </app-section-container>
