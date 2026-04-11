@@ -45,6 +45,11 @@
       </button>
     }
 
+    @for (lang of langOptions(); track lang) {
+      <button class="e-lang" type="button" (click)="setLang(lang)">
+        {{ lang }}
+      </button>
+    }
 
   </div>
 </nav>

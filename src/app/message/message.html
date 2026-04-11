@@ -9,6 +9,6 @@
       </div>
     </div>
     <p class="card-text fw-bold mb-4 mt-3">{{message().message}}</p>
-    <p class="card-text"><small class="text-body-secondary">Question by: {{message().createdBy?.name}}</small></p>
+    <p class="card-text"><small class="text-body-secondary">{{ 'message.type.' + message().typ + '.by' | translate:{name: message().createdBy?.name} }}</small></p>
   </div>
 </div>

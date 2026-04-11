@@ -7,14 +7,14 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { authInterceptor } from './core/auth-interceptor';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import localeSk from '@angular/common/locales/sk';
 import { registerLocaleData } from '@angular/common';
 import { DefaultOAuthInterceptor, provideOAuthClient } from 'angular-oauth2-oidc';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 registerLocaleData(localeSk, 'sk');
-
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,5 +29,14 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     { provide: HTTP_INTERCEPTORS, useClass: DefaultOAuthInterceptor, multi: true },
+    provideTranslateService({
+      defaultLanguage: 'sk',
+      lang: 'sk',
+      fallbackLang: 'en',
+      loader: provideTranslateHttpLoader({
+        prefix: '/i18n/',
+        suffix: '.json',
+      }),
+    }),
   ],
 };
