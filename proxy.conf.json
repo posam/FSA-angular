@@ -1,0 +1,5 @@
+{
+  "/discussion-messages": {
+    "target": "http://localhost:8080"
+  }
+}
